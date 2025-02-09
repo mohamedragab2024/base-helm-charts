@@ -3,21 +3,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mychart.fullname" . }}
+  name: {{ include " <CHART_NAME>.fullname" . }}
   labels:
-    app:  {{ include "mychart.fullname" . }}
+    app:  {{ include " <CHART_NAME>.fullname" . }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      app: {{ include "mychart.fullname" . }}
+      app: {{ include " <CHART_NAME>.fullname" . }}
   template:
     metadata:
       labels:
-        app:  {{ include "mychart.fullname" . }}
+        app:  {{ include " <CHART_NAME>.fullname" . }}
     spec:
       containers:
-      - name: {{ include "mychart.fullname" . }}
+      - name: {{ include " <CHART_NAME>.fullname" . }}
         image: docker.io/library/{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag | default .Chart.AppVersion }}
         ports:
         - containerPort: {{ .Values.deployment.containerPort }}

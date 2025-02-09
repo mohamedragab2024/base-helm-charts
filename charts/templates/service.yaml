@@ -10,5 +10,5 @@ spec:
   ports:
     - protocol: TCP
       port: {{ required "Port is required" .Values.service.port }}
-      targetPort: {{ required "TargetPort is required" .Values.service.targetPort default 8080 }}
+      targetPort: {{ .Values.service.targetPort | default 8080 }}
 {{- end }}

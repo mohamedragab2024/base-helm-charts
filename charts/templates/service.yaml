@@ -1,0 +1,14 @@
+{{- if .Values.service.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "mychart.fullname" . }}
+spec:
+  selector:
+    app.kubernetes.io/name: {{ include "mychart.fullname" . }}
+  ports:
+    - protocol: TCP
+      port: {{ required "Port is required" .Values.service.port }}
+      targetPort: {{ required "TargetPort is required" .Values.service.targetPort default 8080 }}
+{{- end }}
